@@ -1,0 +1,4 @@
+﻿[Title]=<span id="thread_subject">{0}</span>
+[Content]=<div class="t_fsz">{0}</div>
+
+URL中的地址ID占位符是{0}

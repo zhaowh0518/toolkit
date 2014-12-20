@@ -1,0 +1,9 @@
+﻿[ListUrl]=http://tbbs.glodon.com/forum.php?mod=forumdisplay&fid=2&page={0}
+[Url]=http://tbbs.glodon.com/forum.php?mod=viewthread&amp;tid={0}
+[StartID]=1
+[EndID]=2
+[Filter]=
+[OppFilter]=
+[Output]=
+[Encoding]=gb2312
+[ContentLength]=300

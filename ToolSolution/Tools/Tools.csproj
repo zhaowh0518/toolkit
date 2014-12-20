@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{515F3002-2577-4EFD-941D-00F097DF85DB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToolSolution.Tools</RootNamespace>
+    <AssemblyName>Tools</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>t.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\QQForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\QQForm.Designer.cs">
+      <DependentUpon>QQForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SQLiteHelper.cs" />
+    <Compile Include="File\FileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="File\FileForm.Designer.cs">
+      <DependentUpon>FileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="File\FileListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="File\FileListForm.Designer.cs">
+      <DependentUpon>FileListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="File\FolderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="File\FolderForm.Designer.cs">
+      <DependentUpon>FolderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="File\ImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="File\ImageForm.Designer.cs">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="File\MusicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="File\MusicForm.Designer.cs">
+      <DependentUpon>MusicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Net\Grabber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Net\Grabber.Designer.cs">
+      <DependentUpon>Grabber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Video\ImageToVideoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Video\ImageToVideoForm.Designer.cs">
+      <DependentUpon>ImageToVideoForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="App\QQForm.resx">
+      <DependentUpon>QQForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="File\FileForm.resx">
+      <DependentUpon>FileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="File\FileListForm.resx">
+      <DependentUpon>FileListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="File\FolderForm.resx">
+      <DependentUpon>FolderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="File\ImageForm.resx">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="File\MusicForm.resx">
+      <DependentUpon>MusicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Net\Grabber.resx">
+      <DependentUpon>Grabber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Video\ImageToVideoForm.resx">
+      <DependentUpon>ImageToVideoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\GrabberParaConfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\ffmpeg\FFmpeg .htm" />
+    <Content Include="lib\ffmpeg\ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\ffmpeg\readme.txt" />
+    <Content Include="Config\GrabberConfig.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\video\cover\cover1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resource\video\music\初雪.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="t.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="lib\SQLite\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppHandle\AppHandle.csproj">
+      <Project>{1A7B9554-F110-4D05-BFFA-FCE4BE86AF80}</Project>
+      <Name>AppHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileHandle\FileHandle.csproj">
+      <Project>{FE9DF70F-6B90-4332-A7A8-EA3033E43444}</Project>
+      <Name>FileHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{5F4ACA8B-0CE8-41F0-9BB9-4F6CF8B853DF}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextHandle\TextHandle.csproj">
+      <Project>{AFF4267D-849D-4420-8718-D94DB597746B}</Project>
+      <Name>TextHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{5B79C019-7074-49CB-AC14-4BF39D9C2F69}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
