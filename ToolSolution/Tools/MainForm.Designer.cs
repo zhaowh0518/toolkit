@@ -40,9 +40,11 @@
             this.tsmiQQ = new System.Windows.Forms.ToolStripMenuItem();
             this.多媒体类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiVideo = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.网络类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGrabber = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.财务类ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBill = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +54,8 @@
             this.tsmi,
             this.应用程序类ToolStripMenuItem,
             this.多媒体类ToolStripMenuItem,
-            this.网络类ToolStripMenuItem});
+            this.网络类ToolStripMenuItem,
+            this.财务类ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 25);
@@ -74,35 +77,35 @@
             // tsmiFolder
             // 
             this.tsmiFolder.Name = "tsmiFolder";
-            this.tsmiFolder.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFolder.Size = new System.Drawing.Size(124, 22);
             this.tsmiFolder.Text = "文件夹";
             this.tsmiFolder.Click += new System.EventHandler(this.tsmiFolder_Click);
             // 
             // tsmiFile
             // 
             this.tsmiFile.Name = "tsmiFile";
-            this.tsmiFile.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFile.Size = new System.Drawing.Size(124, 22);
             this.tsmiFile.Text = "文件通用";
             this.tsmiFile.Click += new System.EventHandler(this.tsmiFile_Click);
             // 
             // tsmiFileList
             // 
             this.tsmiFileList.Name = "tsmiFileList";
-            this.tsmiFileList.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFileList.Size = new System.Drawing.Size(124, 22);
             this.tsmiFileList.Text = "文件列表";
             this.tsmiFileList.Click += new System.EventHandler(this.tsmiFileList_Click);
             // 
             // tsmiMusic
             // 
             this.tsmiMusic.Name = "tsmiMusic";
-            this.tsmiMusic.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMusic.Size = new System.Drawing.Size(124, 22);
             this.tsmiMusic.Text = "音乐";
             this.tsmiMusic.Click += new System.EventHandler(this.tsmiMusic_Click);
             // 
             // tsmiImage
             // 
             this.tsmiImage.Name = "tsmiImage";
-            this.tsmiImage.Size = new System.Drawing.Size(152, 22);
+            this.tsmiImage.Size = new System.Drawing.Size(124, 22);
             this.tsmiImage.Text = "图片";
             this.tsmiImage.Click += new System.EventHandler(this.tsmiImage_Click);
             // 
@@ -132,17 +135,9 @@
             // tsmiVideo
             // 
             this.tsmiVideo.Name = "tsmiVideo";
-            this.tsmiVideo.Size = new System.Drawing.Size(152, 22);
+            this.tsmiVideo.Size = new System.Drawing.Size(100, 22);
             this.tsmiVideo.Text = "视频";
             this.tsmiVideo.Click += new System.EventHandler(this.tsmiVideo_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // 网络类ToolStripMenuItem
             // 
@@ -158,6 +153,29 @@
             this.tsmiGrabber.Size = new System.Drawing.Size(152, 22);
             this.tsmiGrabber.Text = "网页抓取";
             this.tsmiGrabber.Click += new System.EventHandler(this.tsmiGrabber_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // 财务类ToolStripMenuItem
+            // 
+            this.财务类ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiBill});
+            this.财务类ToolStripMenuItem.Name = "财务类ToolStripMenuItem";
+            this.财务类ToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.财务类ToolStripMenuItem.Text = "财务类";
+            // 
+            // tsmiBill
+            // 
+            this.tsmiBill.Name = "tsmiBill";
+            this.tsmiBill.Size = new System.Drawing.Size(152, 22);
+            this.tsmiBill.Text = "个人账单";
+            this.tsmiBill.Click += new System.EventHandler(this.tsmiBill_Click);
             // 
             // MainForm
             // 
@@ -196,5 +214,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFolder;
         private System.Windows.Forms.ToolStripMenuItem 网络类ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiGrabber;
+        private System.Windows.Forms.ToolStripMenuItem 财务类ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBill;
     }
 }

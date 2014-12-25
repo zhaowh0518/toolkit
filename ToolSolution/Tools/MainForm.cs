@@ -10,6 +10,7 @@ using ToolSolution.Tools.App;
 using ToolSolution.Tools.File;
 using ToolSolution.Tools.Net;
 using ToolSolution.Tools.Video;
+using ToolSolution.Tools.Finance;
 
 namespace ToolSolution.Tools
 {
@@ -82,6 +83,11 @@ namespace ToolSolution.Tools
         private void tsmiGrabber_Click(object sender, EventArgs e)
         {
             ShowForm(new Grabber());
+        }
+
+        private void tsmiBill_Click(object sender, EventArgs e)
+        {
+            ShowForm(new BillForm());
         }
 
     }

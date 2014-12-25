@@ -65,7 +65,6 @@
     <Compile Include="App\QQForm.Designer.cs">
       <DependentUpon>QQForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\SQLiteHelper.cs" />
     <Compile Include="File\FileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +94,12 @@
     </Compile>
     <Compile Include="File\MusicForm.Designer.cs">
       <DependentUpon>MusicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\BillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finance\BillForm.Designer.cs">
+      <DependentUpon>BillForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -134,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="File\MusicForm.resx">
       <DependentUpon>MusicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finance\BillForm.resx">
+      <DependentUpon>BillForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -177,6 +185,8 @@
     <Content Include="Config\GrabberConfig.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="lib\sqlite\System.Data.SQLite.DLL" />
+    <Content Include="lib\sqlite\System.Data.SQLite.Linq.dll" />
     <Content Include="resource\video\cover\cover1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -187,12 +197,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="lib\SQLite\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppHandle\AppHandle.csproj">
       <Project>{1A7B9554-F110-4D05-BFFA-FCE4BE86AF80}</Project>
       <Name>AppHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessHandle\DataAccessHelper.csproj">
+      <Project>{22D0917E-7D18-4037-861B-ED2814C9F488}</Project>
+      <Name>DataAccessHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileHandle\FileHandle.csproj">
       <Project>{FE9DF70F-6B90-4332-A7A8-EA3033E43444}</Project>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.OleDb;
 using System.Data;
 
-namespace ToolSolution.DataAccessHandle
+namespace ToolSolution.DataAccessHelper
 {
     /// <summary>
     /// Excel操作的帮助类
@@ -23,7 +23,7 @@ namespace ToolSolution.DataAccessHandle
         /// <summary>
         /// 查询数据的SQL
         /// </summary>
-        private const string SQL_SELECT_DATA = "select * from [{0}]";
+        private const string SQL_SELECT_DATA = "select 日期,金额,分类,明细,商家,备注 from [{0}]";
 
         /// <summary>
         /// 真实的连接字符串，判断了Excel版本
@@ -70,6 +70,34 @@ namespace ToolSolution.DataAccessHandle
                 }
             }
             return sheetList;
+        }
+        /// <summary>
+        /// 获取Excel中的所有数据
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetData()
+        {
+            DataSet ds = new DataSet();
+            string tableName = string.Empty;
+            string sqlText = string.Empty;
+            OleDbDataAdapter dataAdapter;
+            using (OleDbConnection conn = new OleDbConnection(ConnStr))
+            {
+                conn.Open();
+                DataTable dtSheet = conn.GetSchema("Tables");
+                if (dtSheet != null && dtSheet.Rows != null)
+                {
+                    for (int i = 0; i < dtSheet.Rows.Count; i++)
+                    {
+                        tableName = dtSheet.Rows[i][2].ToString();
+                        sqlText = string.Format(SQL_SELECT_DATA, tableName);
+                        dataAdapter = new OleDbDataAdapter(sqlText, conn);
+                        dataAdapter.Fill(ds, tableName);
+                    }
+                }
+                conn.Close();
+            }
+            return ds;
         }
         /// <summary>
         /// 获取Excel中的数据
