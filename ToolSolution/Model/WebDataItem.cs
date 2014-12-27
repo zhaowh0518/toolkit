@@ -39,7 +39,7 @@ namespace ToolSolution.Model
         /// 转化成字符串
         /// </summary>
         /// <returns></returns>
-        public string ToString()
+        public override string ToString()
         {
             return string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n{4}", Title, ImageUrl, Author, CreateDate, Content);
         }

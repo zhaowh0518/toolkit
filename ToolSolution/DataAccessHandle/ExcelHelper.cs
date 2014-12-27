@@ -23,7 +23,7 @@ namespace ToolSolution.DataAccessHelper
         /// <summary>
         /// 查询数据的SQL
         /// </summary>
-        private const string SQL_SELECT_DATA = "select 日期,金额,分类,明细,商家,备注 from [{0}]";
+        private readonly string SQL_SELECT_DATA = "select * from [{0}]";
 
         /// <summary>
         /// 真实的连接字符串，判断了Excel版本
@@ -31,14 +31,24 @@ namespace ToolSolution.DataAccessHelper
         private string _connStr = string.Empty;
         public string ConnStr { get { return _connStr; } }
         /// <summary>
+        /// 列名，以英文逗号隔开，如果不写，默认为*
+        /// </summary>
+        private string _defineColums = "*";
+        public string DefineColumns { get { return _defineColums; } }
+        /// <summary>
         /// 初始化Helper
         /// </summary>
         /// <param name="filePath"></param>
-        public ExcelHelper(string filePath)
+        public ExcelHelper(string filePath,string columnsName)
         {
             if (string.IsNullOrEmpty(filePath))
             {
                 throw new Exception("文件名不能为空！");
+            }
+            if (!string.IsNullOrEmpty(columnsName))
+            {
+                _defineColums = columnsName;
+                SQL_SELECT_DATA = SQL_SELECT_DATA.Replace("*", columnsName);
             }
             if (filePath.ToLower().Substring(filePath.LastIndexOf(".")).Equals(".xls")) //97-2003版本的Excel
             {

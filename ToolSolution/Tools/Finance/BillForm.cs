@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data;
 using ToolSolution.DataAccessHelper;
 
 namespace ToolSolution.Tools.Finance
@@ -16,11 +15,15 @@ namespace ToolSolution.Tools.Finance
         /// <summary>
         /// Excel中的所有数据
         /// </summary>
-        DataSet dsBillData = new System.Data.DataSet();
+        DataSet _dsBillData = new System.Data.DataSet();
         /// <summary>
         /// Excel帮助类
         /// </summary>
-        ExcelHelper excelHelper;
+        ExcelHelper _excelHelper;
+        /// <summary>
+        /// Excel地址
+        /// </summary>
+        string _excelPath = string.Empty;
 
         public BillForm()
         {
@@ -30,15 +33,14 @@ namespace ToolSolution.Tools.Finance
         /// 获取用户选择的Excel
         /// </summary>
         /// <returns></returns>
-        private string GetExcelPath()
+        private void GetExcelPath()
         {
             string path = string.Empty;
             OpenFileDialog fileDialog = new OpenFileDialog();
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                path = fileDialog.FileName;
+                _excelPath = fileDialog.FileName;
             }
-            return path;
         }
         /// <summary>
         /// 根据Sheet的名称绑定DataGridView的数据
@@ -46,14 +48,14 @@ namespace ToolSolution.Tools.Finance
         /// <param name="tableName"></param>
         private void BindTableData(string tableName)
         {
-            dgvData.DataSource = dsBillData.Tables[tableName];
+            dgvData.DataSource = _dsBillData.Tables[tableName];
         }
         /// <summary>
         /// 分析财务数据按日期、分类、商家分别汇总
         /// </summary>
         private void Analyze()
         {
-            string path = @"D:\1.txt";
+            string path = _excelPath.Replace(".xls", ".result.txt");
             Dictionary<string, double> sumDate = new Dictionary<string, double>();
             Dictionary<string, double> sumCategory = new Dictionary<string, double>();
             Dictionary<string, double> sumTrader = new Dictionary<string, double>();
@@ -63,27 +65,33 @@ namespace ToolSolution.Tools.Finance
             double money = 0;
 
             //遍历Table
-            for (int i = 0; i < dsBillData.Tables.Count; i++)
+            for (int i = 0; i < _dsBillData.Tables.Count; i++)
             {
-                strDate = dsBillData.Tables[i].TableName.Replace("$", string.Empty).Replace("'",string.Empty);
+                //处理的必须是选中的Table
+                if (!cbListTable.CheckedItems.Contains(_dsBillData.Tables[i].TableName))
+                {
+                    continue;
+                }
+                strDate = _dsBillData.Tables[i].TableName.Replace("$", string.Empty).Replace("'", string.Empty);
                 if (!sumDate.Keys.Contains(strDate))
                 {
+                    strDate = strDate.PadLeft(2, '0'); //日期以2位展示
                     sumDate.Add(strDate, 0);
                 }
                 //遍历每条数据
-                for (int j = 0; j < dsBillData.Tables[i].Rows.Count; j++)
+                for (int j = 0; j < _dsBillData.Tables[i].Rows.Count; j++)
                 {
-                    if (!string.IsNullOrEmpty(dsBillData.Tables[i].Rows[j]["金额"].ToString()))
+                    if (!string.IsNullOrEmpty(_dsBillData.Tables[i].Rows[j]["金额"].ToString()))
                     {
-                        money = Convert.ToDouble(dsBillData.Tables[i].Rows[j]["金额"]);
+                        money = Convert.ToDouble(_dsBillData.Tables[i].Rows[j]["金额"]);
                         //合计行
-                        if (string.IsNullOrEmpty(dsBillData.Tables[i].Rows[j]["日期"].ToString()) || dsBillData.Tables[i].Rows[j]["日期"].ToString().Equals("合计"))
+                        if (string.IsNullOrEmpty(_dsBillData.Tables[i].Rows[j]["日期"].ToString()) || _dsBillData.Tables[i].Rows[j]["日期"].ToString().Equals("合计"))
                         {
                             sumDate[strDate] += money;
                         }
                         else
                         {
-                            strCategory = dsBillData.Tables[i].Rows[j]["分类"].ToString();
+                            strCategory = _dsBillData.Tables[i].Rows[j]["分类"].ToString();
                             if (!string.IsNullOrEmpty(strCategory))
                             {
                                 if (!sumCategory.Keys.Contains(strCategory))
@@ -95,7 +103,7 @@ namespace ToolSolution.Tools.Finance
                                     sumCategory[strCategory] += money;
                                 }
                             }
-                            strTrader = dsBillData.Tables[i].Rows[j]["商家"].ToString();
+                            strTrader = _dsBillData.Tables[i].Rows[j]["商家"].ToString();
                             if (!string.IsNullOrEmpty(strTrader))
                             {
                                 if (!sumTrader.Keys.Contains(strTrader))
@@ -111,25 +119,29 @@ namespace ToolSolution.Tools.Finance
                     }
                 }
             }
-
+            //排序
+            sumDate = sumDate.OrderBy(p => p.Key).ToDictionary(o=>o.Key,p=>p.Value);
+            sumCategory = sumCategory.OrderByDescending(p => p.Value).ToDictionary(o => o.Key, p => p.Value);
+            sumTrader = sumTrader.OrderByDescending(p => p.Value).ToDictionary(o => o.Key, p => p.Value);
             //输出结果
             StringBuilder sb = new StringBuilder();
             string split = "=====================================";
-            string tab = "\t\t\t\t";
+            string tab = "\t\t";
+            int nameLength = 10;
             //日期汇总
             sb.AppendLine("日期汇总");
             sb.AppendLine(split);
             foreach (var item in sumDate.Keys)
             {
-                sb.AppendFormat("{0}{1}{2}\r\n", item,tab, sumDate[item]);
+                sb.AppendFormat("{0}{1}{2}\r\n", item.PadRight(nameLength), tab, (int)sumDate[item]);
             }
-            sb.AppendLine("");
+            sb.AppendLine(split);
             //分类汇总
             sb.AppendLine("分类汇总");
             sb.AppendLine(split);
             foreach (var item in sumCategory.Keys)
             {
-                sb.AppendFormat("{0}{1}{2}\r\n", item,tab, sumCategory[item]);
+                sb.AppendFormat("{0}{1}{2}\r\n", item.PadRight(nameLength), tab, (int)sumCategory[item]);
             }
             sb.AppendLine(split);
             //商家汇总
@@ -137,7 +149,7 @@ namespace ToolSolution.Tools.Finance
             sb.AppendLine(split);
             foreach (var item in sumTrader.Keys)
             {
-                sb.AppendFormat("{0}{1}{2}\r\n", item, tab,sumTrader[item]);
+                sb.AppendFormat("{0}{1}{2}\r\n", item.PadRight(nameLength), tab, (int)sumTrader[item]);
             }
             sb.AppendLine(split);
 
@@ -151,13 +163,18 @@ namespace ToolSolution.Tools.Finance
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            //string path = GetExcelPath();
-            string path = @"D:\2014.xls";
-            excelHelper = new ExcelHelper(path);
-            List<string> tableList = excelHelper.GetSheetList();
-            dsBillData = excelHelper.GetData();
+            GetExcelPath();
+            string columnsName = "日期,金额,分类,明细,商家,备注";
+            _excelHelper = new ExcelHelper(_excelPath, columnsName);
+            List<string> tableList = _excelHelper.GetSheetList();
+            _dsBillData = _excelHelper.GetData();
             cbListTable.DataSource = tableList;
+            for (int i = 0; i < cbListTable.Items.Count; i++)
+            {
+                cbListTable.SetItemChecked(i, true); //默认全部选中
+            }
         }
+
         private void cbListTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindTableData(cbListTable.SelectedItem.ToString());
@@ -165,7 +182,7 @@ namespace ToolSolution.Tools.Finance
 
         private void btnAnalyze_Click(object sender, EventArgs e)
         {
-            if (dsBillData.Tables != null && dsBillData.Tables.Count > 0)
+            if (_dsBillData.Tables != null && _dsBillData.Tables.Count > 0)
             {
                 Analyze();
             }
